@@ -40,7 +40,7 @@
         }
 
         // set account
-        web3.eth.defaultAccount = web3.eth.accounts[0];
+        web3.eth.defaultAccount = web3.eth.accounts[1];
 
         var CoursetroContract = web3.eth.contract([
             {
@@ -127,9 +127,14 @@
         //     }
         // });
         
-
         $("#button").click(function() {
-            Coursetro.setInstructor($("#name").val(), $("#age").val());
+            Coursetro.setInstructor($("#name").val(), $("#age").val(), (err, res) => {
+                if (err) {
+                    $("#loader").hide();
+                    console.log(err);
+                }
+                
+            });
             $("#loader").show();
         });
 
